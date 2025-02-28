@@ -28,3 +28,19 @@ def setup_routes(app):
     @app.route('/about')
     def about():
         return render_template('about.html')
+
+    @app.route('/chatbot')
+    def chatbot_project():
+        return render_template('/chatbot.html')
+
+    @app.route('/emergency')
+    def emergency_project():
+        return render_template('/healthcare.html')
+
+    @app.route('/leetcode')
+    def leetcode_project():
+        return render_template('/leetcode.html')
+
+    @app.route('/cv')
+    def cv_page():
+        return render_template('/cv.html')

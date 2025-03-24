@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container my-5">
+  <h2 class="text-center mb-4">🧠 My Skills</h2>
+
+  <!-- Skill Categories with Badges -->
+  <div class="mb-4 text-center">
+    <span class="badge bg-primary me-1">Python</span>
+    <span class="badge bg-success me-1">Scrapy</span>
+    <span class="badge bg-warning text-dark me-1">Linux</span>
+    <span class="badge bg-info text-dark me-1">XPath</span>
+    <span class="badge bg-danger me-1">Git</span>
+    <span class="badge bg-secondary me-1">MongoDB</span>
+    <span class="badge bg-dark me-1">Robot Framework</span>
+    <span class="badge bg-light text-dark me-1">Pandas</span>
+    <span class="badge bg-primary me-1">Numpy</span>
+    <span class="badge bg-info text-dark me-1">Matplotlib</span>
+    <span class="badge bg-success me-1">Postman</span>
+    <span class="badge bg-warning text-dark me-1">Fiddler</span>
+  </div>
+
+  <!-- Word Cloud Image -->
+  <div class="text-center">
+    <img src="../static/wordclouds/skills_wordcloud.png" alt="Skills Word Cloud" class="img-fluid" style="max-width: 700px;">
+  </div>
+
+  <!-- Progress Bars -->
+  <div class="mt-5">
+    <h4>🔧 Technical Proficiency</h4>
+    <div class="mb-2">Python
+      <div class="progress">
+        <div class="progress-bar bg-success" style="width: 95%">95%</div>
+      </div>
+    </div>
+    <div class="mb-2">Scrapy / XPath
+      <div class="progress">
+        <div class="progress-bar bg-info" style="width: 90%">90%</div>
+      </div>
+    </div>
+    <div class="mb-2">Linux / Git
+      <div class="progress">
+        <div class="progress-bar bg-warning text-dark" style="width: 85%">85%</div>
+      </div>
+    </div>
+    <div class="mb-2">Data Cleaning & Processing
+      <div class="progress">
+        <div class="progress-bar bg-danger" style="width: 80%">80%</div>
+      </div>
+    </div>
+    <div class="mb-2">Web Visualization (HTML/CSS/Bootstrap)
+      <div class="progress">
+        <div class="progress-bar bg-primary" style="width: 75%">75%</div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

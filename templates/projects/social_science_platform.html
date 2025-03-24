@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container my-5 text-center">
+  <h2 class="text-2xl font-bold mb-2">📚 Social Science Database Platform</h2>
+  <p class="text-lg text-gray-600 mb-4">
+    Built a retrieval platform for news, law, policies, and CNKI data with anti-crawling bypass techniques, supporting data cleaning, quality enhancement, and research usage.
+  </p>
+
+  <!-- Tech Stack Tags -->
+  <div class="flex flex-wrap justify-center gap-2 mb-4">
+    <span class="bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-semibold">Python</span>
+    <span class="bg-green-600 text-white px-3 py-1 rounded-full text-sm font-semibold">Scrapy</span>
+    <span class="bg-yellow-400 text-white px-3 py-1 rounded-full text-sm font-semibold">XPath</span>
+    <span class="bg-purple-500 text-white px-3 py-1 rounded-full text-sm font-semibold">Data Cleaning</span>
+    <span class="bg-pink-500 text-white px-3 py-1 rounded-full text-sm font-semibold">CNKI</span>
+    <span class="bg-gray-800 text-white px-3 py-1 rounded-full text-sm font-semibold">Anti-Crawling</span>
+  </div>
+
+  <!-- Word Cloud -->
+  <div class="flex justify-center mb-5">
+    <img src="{{ url_for('static', filename='wordclouds/social_science_wordcloud_final.png') }}" alt="Social Science Word Cloud" class="rounded shadow-lg">
+  </div>
+
+  <!-- Responsibilities Section -->
+  <h3 class="text-xl font-semibold mb-4">🔧 Responsibilities</h3>
+  <div class="grid md:grid-cols-2 gap-4 text-left">
+    <div class="bg-white p-4 rounded shadow">
+      📚 Responsible for collection and cleaning of six categories of databases (news, policy, laws, etc).
+    </div>
+    <div class="bg-white p-4 rounded shadow">
+      🚫 Applied anti-crawling strategies (e.g., access limits, verification codes) to obtain policy & research data.
+    </div>
+    <div class="bg-white p-4 rounded shadow">
+      🧹 Cleaned large volumes of Chinese news and policy texts to ensure accuracy and completeness.
+    </div>
+    <div class="bg-white p-4 rounded shadow">
+      📊 Processed data from legal studies and high-quality papers to improve data usability for analysis.
+    </div>
+  </div>
+
+  <a href="/about" class="btn btn-outline-primary mt-6">← Back to Home</a>
+</div>
+{% endblock %}

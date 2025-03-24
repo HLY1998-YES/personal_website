@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container my-5 text-center">
+  <h2 class="text-3xl font-bold mb-3">📰 Additional Data Collection Projects</h2>
+  <p class="text-lg text-gray-600 mb-4">
+    Executed diverse data acquisition projects from multiple platforms to support research in social sciences and public events.
+  </p>
+
+  <!-- Tech Tags -->
+  <div class="flex flex-wrap justify-center gap-2 mb-4">
+    <span class="bg-blue-500 text-white font-semibold px-3 py-1 rounded-full text-sm">Python</span>
+    <span class="bg-green-700 text-white font-semibold px-3 py-1 rounded-full text-sm">Scrapy</span>
+    <span class="bg-yellow-500 text-white font-semibold px-3 py-1 rounded-full text-sm">WeChat</span>
+    <span class="bg-pink-500 text-white font-semibold px-3 py-1 rounded-full text-sm">Bilibili</span>
+    <span class="bg-gray-800 text-white font-semibold px-3 py-1 rounded-full text-sm">Twitter API</span>
+  </div>
+
+  <!-- Word Cloud -->
+  <div class="flex justify-center">
+    <img src="{{ url_for('static', filename='wordclouds/additional_data_collection_wordcloud.png') }}" alt="Data Collection Word Cloud" class="rounded-lg shadow-md max-w-full h-auto">
+  </div>
+
+  <!-- Responsibilities -->
+  <h3 class="text-2xl font-bold mt-8 mb-4">📌 Responsibilities</h3>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-left max-w-4xl mx-auto">
+    <div class="bg-white p-4 rounded-xl shadow">
+      <p>🛠️ Provided temporary data services by collecting public information from WeChat, Bilibili, NetEase, and Twitter.</p>
+    </div>
+    <div class="bg-white p-4 rounded-xl shadow">
+      <p>📊 Gathered epidemic-related information during outbreaks to support analytical needs of a special COVID-19 research section.</p>
+    </div>
+    <div class="bg-white p-4 rounded-xl shadow">
+      <p>🏛️ Collected political news and statements during the National Congress and CPPCC sessions to enrich specialized datasets.</p>
+    </div>
+    <div class="bg-white p-4 rounded-xl shadow">
+      <p>📱 Conducted mobile app data crawling, including Phoenix App, to expand the range of collected resources.</p>
+    </div>
+  </div>
+
+  <a href="/about" class="btn btn-outline-primary mt-6">← Back to Home</a>
+</div>
+{% endblock %}

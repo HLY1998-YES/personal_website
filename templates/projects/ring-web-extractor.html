@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container my-5">
+  <h2 class="text-center mb-4">🌐 Ring Web Extractor</h2>
+  <p class="lead text-center">
+    Built a visual web crawler with distributed crawling and cloud-based task management. Crawled JD, Taobao, Meituan, Ele.me.
+  </p>
+
+  <div class="d-flex flex-wrap justify-content-center gap-2 mb-3">
+    <span class="badge bg-primary">Python</span>
+    <span class="badge bg-success">Scrapy</span>
+    <span class="badge bg-warning text-dark">Middleware</span>
+    <span class="badge bg-info text-dark">Proxy</span>
+    <span class="badge bg-danger">Anti-Crawling</span>
+    <span class="badge bg-dark">System Testing</span>
+  </div>
+
+  <div class="text-center mb-4">
+    <img src="{{ url_for('static', filename='wordclouds/ring_web_cleaned_wordcloud.png') }}" class="img-fluid shadow" alt="Ring Web Extractor Word Cloud" style="max-width: 600px;">
+  </div>
+
+  <h3 class="text-center fw-bold">Responsibilities</h3>
+  <div class="row row-cols-1 row-cols-md-2 g-3 mt-2">
+    <div class="col">
+      <div class="p-3 border rounded shadow-sm"><span class="me-2">🛠️</span>Developed a Python crawling framework with core modules including request scheduler, middleware, and pipelines.</div>
+    </div>
+    <div class="col">
+      <div class="p-3 border rounded shadow-sm"><span class="me-2">🧱</span>Adapted and customized XML scripts and proxy middleware to solve anti-crawling issues.</div>
+    </div>
+    <div class="col">
+      <div class="p-3 border rounded shadow-sm"><span class="me-2">🧪</span>Performed unit, integration, system, and stress testing for the framework.</div>
+    </div>
+    <div class="col">
+      <div class="p-3 border rounded shadow-sm"><span class="me-2">📊</span>Optimized the crawler to support distributed cluster collection and cloud-end task management.</div>
+    </div>
+    <div class="col">
+      <div class="p-3 border rounded shadow-sm"><span class="me-2">📦</span>Collected large volumes of data from platforms like JD, Taobao, Meituan, and Ele.me.</div>
+    </div>
+  </div>
+
+  <div class="text-center mt-4">
+    <a href="/about" class="btn btn-outline-primary">← Back to Home</a>
+  </div>
+</div>
+{% endblock %}

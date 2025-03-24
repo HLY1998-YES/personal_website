@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container my-5">
+  <!-- 标题 & 一句话概述 -->
+  <h2 class="fw-bold mb-3">🔧 Automatic Testing Framework</h2>
+  <p class="lead text-muted">
+    Built a Python-based automation framework to replace manual test processes, supporting equipment control, mechanical arm scripting, and test case generation.
+  </p>
+
+  <!-- 技术标签 -->
+  <div class="mb-4">
+    <span class="badge bg-primary me-2 mb-2">Python</span>
+    <span class="badge bg-success me-2 mb-2">Robot Framework</span>
+    <span class="badge bg-warning text-dark me-2 mb-2">CAN</span>
+    <span class="badge bg-info text-dark me-2 mb-2">FlexRay</span>
+    <span class="badge bg-danger me-2 mb-2">LIN</span>
+    <span class="badge bg-secondary me-2 mb-2">Mechanical Arm</span>
+    <span class="badge bg-dark me-2 mb-2">Test Automation</span>
+  </div>
+
+  <!-- 词云展示 -->
+  <div class="text-center mb-5">
+    <img src="{{ url_for('static', filename='wordclouds/automatic_testing_wordcloud.png') }}" alt="Word Cloud" class="img-fluid shadow" style="max-height: 300px;">
+  </div>
+
+  <!-- 职责列表 -->
+ <h4 class="mt-5 mb-3">
+  <i class="fas fa-tools me-2"></i>Responsibilities
+</h4>
+<div class="row row-cols-1 row-cols-md-2 g-3">
+  <div class="col">
+    <div class="p-3 border rounded shadow-sm h-100 bg-light">
+      ✅ Designed and implemented equipment & test case management modules to streamline workflows.
+    </div>
+  </div>
+  <div class="col">
+    <div class="p-3 border rounded shadow-sm h-100 bg-light">
+      ⚙️ Developed automation logic using Robot Framework for test case generation and result parsing.
+    </div>
+  </div>
+  <div class="col">
+    <div class="p-3 border rounded shadow-sm h-100 bg-light">
+      📑 Authored API interface documentation to assist team members.
+    </div>
+  </div>
+  <div class="col">
+    <div class="p-3 border rounded shadow-sm h-100 bg-light">
+      🤖 Integrated mechanical arm automation module to simulate manual screen operations.
+    </div>
+  </div>
+  <div class="col">
+    <div class="p-3 border rounded shadow-sm h-100 bg-light">
+      🚗 Adapted test protocols to support multiple vehicle types (e.g., Geely, BMW).
+    </div>
+  </div>
+  <div class="col">
+    <div class="p-3 border rounded shadow-sm h-100 bg-light">
+      📈 Improved coverage through algorithmic test case generation.
+    </div>
+  </div>
+</div>
+
+
+  <div class="text-center mt-4">
+    <a href="/about" class="btn btn-outline-primary">← Back to Home</a>
+  </div>
+</div>
+{% endblock %}

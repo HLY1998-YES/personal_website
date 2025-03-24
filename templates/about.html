@@ -1,189 +1,120 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Me - My AI Portfolio</title>
+{% extends "base.html" %}
+{% block content %}
+<!-- 🌐 Language Toggle -->
+<button id="lang-toggle" onclick="toggleLang()" class="btn btn-sm btn-outline-secondary lang-toggle">
+  🌐 中文 / English
+</button>
 
-    <!-- Bootstrap CSS & Font Awesome Icons -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<div class="container text-center mt-5">
+  <img src="{{ url_for('static', filename='my_face.jpg') }}" alt="My Photo" class="profile-img mb-3">
+  <h2 data-i18n="name">Lingyun HUANG</h2>
+  <p data-i18n="subtitle">AI Enthusiast | Machine Learning | NLP | Healthcare</p>
+</div>
+<!-- 技能图区域 -->
+<div class="container my-5">
+  <h3 class="text-center mb-4">🎯 技能分布图 Skill Charts</h3>
+  <div class="row text-center">
+    <div class="col-md-4">
+      <h5>🧠 AI & Data</h5>
+      <canvas id="chart-ai" height="250"></canvas>
+    </div>
+    <div class="col-md-4">
+      <h5>🔧 Engineering</h5>
+      <canvas id="chart-eng" height="250"></canvas>
+    </div>
+    <div class="col-md-4">
+      <h5>🕷️ Crawling</h5>
+      <canvas id="chart-crawl" height="250"></canvas>
+    </div>
+  </div>
+</div>
 
-    <style>
-        body {
-            background-color: #f8f9fa;
-        }
-        .profile-container {
-            max-width: 800px;
-            margin: 50px auto;
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
-            text-align: center;
-            backdrop-filter: blur(10px);
-        }
-        .profile-img {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 3px solid #764ba2;
-            cursor: pointer;
-            transition: transform 0.3s;
-        }
-        .profile-img:hover {
-            transform: scale(1.1);
-        }
-        .resume-container {
-            max-width: 900px;
-            margin: 50px auto;
-            padding: 20px;
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-        .resume-section h3 {
-            color: #764ba2;
-            font-weight: bold;
-        }
-        /* 让 Skill Chart 变大，横坐标更清晰 */
-        .skills-chart-container {
-            width: 600px;
-            margin: 0 auto;
-        }
-        /* Current Projects 用 Grid */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            justify-content: center;
-        }
-        .project-card {
-            background: white;
-            padding: 15px;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            transition: transform 0.3s;
-        }
-        .project-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
-        }
-    </style>
-</head>
-<body>
 
-    <!-- 个人介绍 -->
-    <div class="profile-container">
-        <a href="{{ url_for('cv_page') }}">
-            <img src="{{ url_for('static', filename='my_face.jpg') }}" alt="My Photo" class="profile-img">
-        </a>
-        <h1>Hi, I'm Lingyun HUANG</h1>
-        <p class="bio">AI Engineer specializing in Machine Learning, NLP, and Data Engineering.</p>
+<!--&lt;!&ndash; Floating chat toggle button &ndash;&gt;-->
+<!--<button id="chat-toggle-btn" onclick="toggleChat()">💬</button>-->
 
-        <!-- 社交链接 -->
-        <div class="d-flex justify-content-center gap-2">
-            <a href="https://linkedin.com/in/yourprofile" target="_blank" class="btn btn-outline-primary">
-                <i class="fab fa-linkedin"></i> LinkedIn
-            </a>
-            <a href="https://github.com/yourgithub" target="_blank" class="btn btn-outline-dark">
-                <i class="fab fa-github"></i> GitHub
-            </a>
-            <a href="https://gitlab.com/yourgitlab" target="_blank" class="btn btn-outline-danger">
-                <i class="fab fa-gitlab"></i> GitLab
-            </a>
-            <a href="mailto:your.email@example.com" class="btn btn-outline-danger">
-                <i class="fas fa-envelope"></i> Email
-            </a>
-            <a href="{{ url_for('cv_page') }}" class="btn btn-outline-success">
-                <i class="fas fa-file"></i> View CV
-            </a>
+<!--&lt;!&ndash; Floating chat box &ndash;&gt;-->
+<!--<div id="chat-box" class="d-flex flex-column">-->
+<!--  <div id="chat-header" class="d-flex justify-content-between align-items-center px-3 py-2" style="background: #764ba2; color: white;">-->
+<!--    <strong>AI Chat Assistant</strong>-->
+<!--    <button id="chat-close-btn" onclick="closeChat()" style="background: none; border: none; color: white; font-size: 20px;">×</button>-->
+<!--  </div>-->
+<!--  <div id="chat-body"></div>-->
+<!--  <div id="chat-input-area">-->
+<!--    <select id="model-select" class="form-select form-select-sm mb-1">-->
+<!--      <option value="flan">Flan-T5 (问答型，小而快)</option>-->
+<!--      <option value="dialo">DialoGPT (闲聊型，有点毒舌)</option>-->
+<!--    </select>-->
+<!--    <textarea id="user-input" rows="2" placeholder="Type your message..."></textarea>-->
+<!--    <button class="btn btn-outline-primary btn-sm w-100" onclick="sendMessage()">Send</button>-->
+<!--  </div>-->
+<!--</div>-->
+<!-- 🔥 Current Projects -->
+<div class="container">
+  <h2 class="section-title text-center" data-i18n="current_projects">🔥 Current Projects</h2>
+  <div class="row g-4">
+    <div class="col-md-4">
+      <div class="card p-3">
+        <h5 class="card-title" data-i18n="chatbot_project">Chatbot for Learning Assistance</h5>
+        <p class="card-text">GPT-powered chatbot for student Q&A</p>
+        <a href="/projects/chatbot" class="btn btn-outline-primary" data-i18n="view_details">View Details</a>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card p-3">
+        <h5 class="card-title" data-i18n="ed_project">Emergency Flow Prediction</h5>
+        <p class="card-text">Hospital resource optimization using AI</p>
+        <a href="/projects/emergency" class="btn btn-outline-primary" data-i18n="view_details">View Details</a>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card p-3">
+        <h5 class="card-title" data-i18n="leetcode_project">Leetcode Practice</h5>
+        <p class="card-text">Algorithm training and dynamic programming</p>
+        <a href="/projects/leetcode" class="btn btn-outline-primary" data-i18n="view_details">View Details</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 📌 Project Experience -->
+<div class="container mt-5">
+  <h2 class="section-title text-center" data-i18n="project_experience">📌 Project Experience</h2>
+  <div class="row g-4">
+    <div class="col-md-6">
+      <a href="/projects/automatic_testing" class="text-decoration-none text-dark">
+        <div class="card p-3 hover-shadow">
+          <h5 class="card-title" data-i18n="project4">🔧 Automatic Testing Framework</h5>
+          <p class="card-text">Developed a testing framework to optimize manual testing and improve equipment management. Supported CAN, FlexRay, and LIN protocols.</p>
         </div>
+      </a>
     </div>
 
-    <!-- 📝 Project Experience -->
-    <div class="resume-container">
-        <h2 class="text-center">📝 Project Experience</h2>
-
-        <div class="skills-chart-container">
-            <canvas id="skillsChart"></canvas>
+    <div class="col-md-6">
+      <a href="/projects/ring-web-extractor" class="text-decoration-none text-dark">
+        <div class="card p-3 hover-shadow">
+          <h5 class="card-title" data-i18n="project4">🌐 Ring Web Extractor</h5>
+          <p class="card-text">Created a visual web crawler with distributed crawling and cloud-based task management. Crawled JD, Taobao, Meituan, Ele.me.</p>
         </div>
-
-        <div class="resume-section">
-            <h3>🛠️ Automated Testing Framework</h3>
-            <p>Developed an automated testing framework to optimize manual testing processes, improving the efficiency of equipment management and test case maintenance.</p>
-            <p>Implemented and controlled automation scripts for robotic arms to enable automated screen operations.</p>
-        </div>
-
-        <div class="resume-section">
-            <h3>🌐 Web-Based Visualized Crawling Tool</h3>
-            <p>Developed a distributed web scraping tool supporting cluster extraction and cloud-based task management.</p>
-        </div>
-
-        <div class="resume-section">
-            <h3>📊 Scientific Research Data Retrieval Platform</h3>
-            <p>Built an auxiliary platform for social science research, enabling efficient retrieval and utilization of multidisciplinary research data.</p>
-        </div>
+      </a>
     </div>
 
-    <!-- 🔥 Current Projects -->
-    <div class="resume-container">
-        <h2 class="text-center text-primary">🔥 Current Projects</h2>
-        <div class="projects-grid">
-            <div class="project-card">
-                <h4>💬 Chatbot for Learning Assistance</h4>
-                <a href="{{ url_for('chatbot_project') }}" class="btn btn-outline-secondary">🔍 View Details</a>
-            </div>
-            <div class="project-card">
-                <h4>🏥 Emergency Flow Prediction</h4>
-                <a href="{{ url_for('emergency_project') }}" class="btn btn-outline-secondary">🔍 View Details</a>
-            </div>
-            <div class="project-card">
-                <h4>📝 Leetcode Practice</h4>
-                <a href="{{ url_for('leetcode_project') }}" class="btn btn-outline-secondary">🔍 View Details</a>
-            </div>
+    <div class="col-md-6">
+      <a href="/projects/social_science_platform" class="text-decoration-none text-dark">
+        <div class="card p-3 hover-shadow">
+          <h5 class="card-title" data-i18n="project4">📊 Social Science Database Platform</h5>
+          <p class="card-text">Built a retrieval platform for news, law, policies, and CNKI data with anti-crawling bypass techniques.</p>
         </div>
+      </a>
     </div>
-
-    <!-- Bootstrap JS & Chart.js -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        const ctx = document.getElementById('skillsChart').getContext('2d');
-        new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: ['Python', 'Machine Learning', 'NLP', 'Web Crawling', 'Database (MySQL, MongoDB)', 'Linux System', 'Git Version Control', 'Mechanical Arm Control'],
-                datasets: [{
-                    label: 'Skill Level',
-                    data: [90, 85, 80, 85, 80, 80, 75, 60],
-                    backgroundColor: 'rgba(118, 75, 162, 0.6)',
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                indexAxis: 'y',  // 让图表变成横向条形图
-                responsive: true,
-                maintainAspectRatio: false,
-                scales: {
-                    x: {
-                        beginAtZero: true,
-                        max: 100,
-                        ticks: {
-                            font: { size: 14 },
-                            stepSize: 10,
-                            padding: 10
-                        }
-                    },
-                    y: {
-                        ticks: { font: { size: 14 } }
-                    }
-                }
-            }
-        });
-    </script>
-
-</body>
-</html>
+    <div class="col-md-6">
+      <a href="/projects/data_collection" class="text-decoration-none text-dark">
+        <div class="card p-3 hover-shadow">
+          <h5 class="card-title" data-i18n="project4">🗂️ Additional Data Collection Projects</h5>
+          <p class="card-text">Collected data from WeChat, Bilibili, Twitter, Phoenix App, supporting research in social science and election monitoring.</p>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>
+{% endblock %}
